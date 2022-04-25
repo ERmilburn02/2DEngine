@@ -1,0 +1,6 @@
+*.log
+*.make
+Makefile
+[Bb]in/
+[Oo]bj/
+!vendor/bin

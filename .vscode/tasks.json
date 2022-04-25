@@ -1,0 +1,59 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "generate",
+      "type": "shell",
+      "command": "./vendor/bin/premake5",
+      "args": ["gmake2"],
+      "dependsOn": ["clean-my"]
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "make",
+      "dependsOn": ["generate"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "run-sandbox (Debug)",
+      "type": "shell",
+      "command": "./bin/Debug/Sandbox/Sandbox",
+      "dependsOn": ["build"]
+    },
+    {
+      "label": "run-Pong (Debug)",
+      "type": "shell",
+      "command": "./bin/Debug/Pong/Pong",
+      "dependsOn": ["build"]
+    },
+    {
+      "label": "run-Linux-Jam-2022 (Debug)",
+      "type": "shell",
+      "command": "./bin/Debug/Linux-Jam-2022/Linux-Jam-2022",
+      "dependsOn": ["build"]
+    },
+    {
+      "label": "run-FlappyBird (Debug)",
+      "type": "shell",
+      "command": "./bin/Debug/FlappyBird/FlappyBird",
+      "dependsOn": ["build"]
+    },
+    {
+      "label": "clean-my",
+      "type": "shell",
+      "command": "rm -rf bin/Debug/Sandbox/ bin/Release/Sandbox/ obj/Debug/Sandbox/ obj/Debug/Sandbox/ bin/Debug/2DEngine/ bin/Release/2DEngine/ obj/Debug/2DEngine/ obj/Debug/2DEngine/ bin/Debug/Linux-Jam-2022/ bin/Release/Linux-Jam-2022/ obj/Debug/Linux-Jam-2022/ obj/Debug/Linux-Jam-2022/ bin/Debug/FlappyBird/ bin/Release/FlappyBird/ obj/Debug/FlappyBird/ obj/Debug/FlappyBird/ Makefile"
+    },
+    {
+      "label": "clean-all",
+      "type": "shell",
+      "command": "rm -rf bin/ obj/ *.make Makefile"
+    }
+  ]
+}
