@@ -79,7 +79,7 @@ int main(int argc, char **argv)
     const int birdXPos = 64;
     int birdVelocity = 0;
 
-    const int gravity = 50;
+    const int gravity = 25;
 
     bool inputEnabled = false;
     bool gravityEnabled = false;
@@ -109,6 +109,8 @@ int main(int argc, char **argv)
     bool dead = false;
 
     bool reset = false;
+
+    float pipeSpeed = 1.0f;
 
     while (!window.shouldClose())
     {
@@ -153,6 +155,8 @@ int main(int argc, char **argv)
             score = 0;
 
             dead = false;
+
+            pipeSpeed = 1;
         }
 
         if (showSplashScreen)
@@ -176,13 +180,13 @@ int main(int argc, char **argv)
             }
 
             // TODO: Input in engine
-            if (IsKeyPressed(KEY_SPACE) && !gravityEnabled)
+            if ((IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(0)) && !gravityEnabled)
             {
                 // Start game
                 gravityEnabled = true;
             }
 
-            if (IsKeyPressed(KEY_SPACE) && inputEnabled && gravityEnabled)
+            if ((IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(0)) && inputEnabled && gravityEnabled)
             {
                 birdVelocity = -(gravity * 6);
             }
@@ -194,7 +198,9 @@ int main(int argc, char **argv)
             // Update pipes
             if (gravityEnabled && birdMoving)
             {
-                pipeX1 -= (int)(deltaTime * 100);
+                pipeSpeed += 0.00005f;
+
+                pipeX1 -= (int)(pipeSpeed * deltaTime * 100);
                 if (FB::checkPipeCollision(birdXPos, birdHeight, pipeX1, pipeY1, WINDOW_HEIGHT))
                 {
                     inputEnabled = false;
@@ -211,7 +217,7 @@ int main(int argc, char **argv)
                     ps1 = false;
                     score++;
                 }
-                pipeX2 -= (int)(deltaTime * 100);
+                pipeX2 -= (int)(pipeSpeed * deltaTime * 100);
                 if (FB::checkPipeCollision(birdXPos, birdHeight, pipeX2, pipeY2, WINDOW_HEIGHT))
                 {
                     inputEnabled = false;
@@ -228,7 +234,7 @@ int main(int argc, char **argv)
                     ps2 = false;
                     score++;
                 }
-                pipeX3 -= (int)(deltaTime * 100);
+                pipeX3 -= (int)(pipeSpeed * deltaTime * 100);
                 if (FB::checkPipeCollision(birdXPos, birdHeight, pipeX3, pipeY3, WINDOW_HEIGHT))
                 {
                     inputEnabled = false;
@@ -245,7 +251,7 @@ int main(int argc, char **argv)
                     ps3 = false;
                     score++;
                 }
-                pipeX4 -= (int)(deltaTime * 100);
+                pipeX4 -= (int)(pipeSpeed * deltaTime * 100);
                 if (FB::checkPipeCollision(birdXPos, birdHeight, pipeX4, pipeY4, WINDOW_HEIGHT))
                 {
                     inputEnabled = false;
@@ -262,7 +268,7 @@ int main(int argc, char **argv)
                     ps4 = false;
                     score++;
                 }
-                pipeX5 -= (int)(deltaTime * 100);
+                pipeX5 -= (int)(pipeSpeed * deltaTime * 100);
                 if (FB::checkPipeCollision(birdXPos, birdHeight, pipeX5, pipeY5, WINDOW_HEIGHT))
                 {
                     inputEnabled = false;
@@ -279,7 +285,7 @@ int main(int argc, char **argv)
                     ps5 = false;
                     score++;
                 }
-                pipeX6 -= (int)(deltaTime * 100);
+                pipeX6 -= (int)(pipeSpeed * deltaTime * 100);
                 if (FB::checkPipeCollision(birdXPos, birdHeight, pipeX6, pipeY6, WINDOW_HEIGHT))
                 {
                     inputEnabled = false;
