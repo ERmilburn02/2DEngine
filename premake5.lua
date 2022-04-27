@@ -59,7 +59,7 @@ project "FlappyBird"
             includedirs {idirs["raylib-mingw"]}
             libdirs {"_raylib-mingw/lib"}
             links {"2DEngine", "raylib", "opengl32", "gdi32", "winmm"}
-            linkoptions {"-mwindows"}
+            linkoptions {"-mwindows", "-static"}
     
         filter "configurations:Debug"
             defines { "DEBUG" }
