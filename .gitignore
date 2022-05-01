@@ -4,3 +4,4 @@ Makefile
 [Bb]in/
 [Oo]bj/
 !vendor/bin
+null.d
